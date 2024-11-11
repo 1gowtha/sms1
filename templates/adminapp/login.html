@@ -1,0 +1,36 @@
+{% extends 'Navbar/ProjectNavbar.html' %}
+
+{% block body %}
+<div class="container mt-5 pt-3">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+            <h1 class="text-center mb-4">Login</h1>
+
+            <!-- Login Form -->
+            <form method="POST" action="{% url 'login_logic' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1">Password:</label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login</button>
+
+                <!-- Display error messages -->
+                {% if messages %}
+                <ul class="mt-3">
+                    {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
